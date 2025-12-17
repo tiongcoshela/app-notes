@@ -4,7 +4,7 @@ import React from 'react';
 import { Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function EditNoteModal({
-
+// mising datatypes: add the datatypes
 }) {
     return (
         <Modal
