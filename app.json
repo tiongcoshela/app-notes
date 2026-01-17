@@ -19,7 +19,9 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.shela_marie33333.taskexpo",
+      "versionCode": 2
     },
     "web": {
       "output": "static",
@@ -44,6 +46,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "3f0e3c28-8437-4101-a271-de2c6ab1c61d"
+      }
+    },
+    "owner": "shela_marie33333"
   }
 }
