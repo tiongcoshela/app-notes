@@ -10,10 +10,9 @@ type Note = {
   id: string;
   title: string;
   description: string;
-  color?: string; // Added to support the colorful cards
+  color?: string;
 };
 
-// Array of soft colors for the note cards
 const CARD_COLORS = ["#FFD08A", "#C5A3FF", "#B0E57C", "#FFB7B2", "#B2CEFE"];
 
 export default function Task() {
@@ -24,6 +23,9 @@ export default function Task() {
   const [currentNote, setCurrentNote] = useState<Note | null>(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  
+  // 1. ADD SEARCH STATE
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -73,10 +75,19 @@ export default function Task() {
     setEditModalVisible(false);
   };
 
+  // 2. FILTER LOGIC
+  // This automatically updates the list whenever 'searchQuery' or 'notes' changes
+  const filteredNotes = notes.filter((note) => {
+    const searchLower = searchQuery.toLowerCase();
+    return (
+      note.title.toLowerCase().includes(searchLower) ||
+      note.description.toLowerCase().includes(searchLower)
+    );
+  });
+
   return (
     <View style={styles.background}>
       <SafeAreaView style={styles.container}>
-        {/* Header Section */}
         <View style={styles.header}>
           <Text style={styles.headerTitle}>App Notes</Text>
           <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
@@ -84,15 +95,18 @@ export default function Task() {
           </TouchableOpacity>
         </View>
 
-        {/* Search Bar UI */}
+        {/* 3. UPDATED SEARCH BAR */}
         <TextInput 
           style={styles.searchBar} 
           placeholder="Search notes..." 
           placeholderTextColor="#888" 
+          value={searchQuery} // Bind state
+          onChangeText={setSearchQuery} // Update state on type
+          autoCapitalize="none"
         />
 
         <FlatList
-          data={notes}
+          data={filteredNotes} // 4. USE FILTERED DATA INSTEAD OF 'notes'
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 100 }}
@@ -113,7 +127,6 @@ export default function Task() {
           )}
         />
 
-        {/* Floating Action Button (FAB) */}
         <TouchableOpacity 
             style={styles.fab} 
             onPress={() => {
@@ -169,21 +182,18 @@ const styles = StyleSheet.create({
   },
   logoutText: { color: "white", fontWeight: "bold" },
   searchBar: {
-    backgroundColor: "rgba(255, 255, 255, 0.6)",
+    backgroundColor: "rgba(255, 255, 255, 0.8)", // Increased opacity for better visibility
     borderRadius: 20,
     padding: 12,
     paddingHorizontal: 20,
     fontSize: 16,
     marginBottom: 20,
+    color: "#000", // Ensures typed text is black
   },
   noteCard: {
     borderRadius: 25,
     padding: 20,
     marginBottom: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
     elevation: 3,
   },
   noteTitle: { fontSize: 20, fontWeight: "bold", color: "#1a1a1a", marginBottom: 5 },
