@@ -10,10 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.shela_marie33333.taskexpo"
+      "bundleIdentifier": "com.shela-marie33333.taskexpo"
     },
     "android": {
-      "package": "com.shela_marie33333.taskexpo",
+      "package": "com.shela-marie33333.taskexpo",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
