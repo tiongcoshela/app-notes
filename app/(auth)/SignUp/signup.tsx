@@ -30,31 +30,36 @@ export default function SignUp() {
     <SafeAreaView style={styles.container}>
       <View style={styles.card}>
         <Text style={styles.title}>Sign Up</Text>
+        
         <TextInput
           style={styles.input}
           placeholder="Email"
-          placeholderTextColor="#888"
+          placeholderTextColor="#999"
           keyboardType="email-address"
           autoCapitalize="none"
           value={email}
           onChangeText={setEmail}
         />
+
         <TextInput
           style={styles.input}
           placeholder="Password"
-          placeholderTextColor="#888"
+          placeholderTextColor="#999"
           secureTextEntry
           value={password}
           onChangeText={setPassword}
         />
+
+        {/* I removed the duplicate here */}
         <TextInput
           style={styles.input}
           placeholder="Confirm Password"
-          placeholderTextColor="#888"
+          placeholderTextColor="#999"
           secureTextEntry
           value={confirmPassword}
           onChangeText={setConfirmPassword}
         />
+
         <TouchableOpacity style={styles.button} onPress={handleSignUp} disabled={loading}>
           <Text style={styles.buttonText}>{loading ? "Creating Account..." : "Sign Up"}</Text>
         </TouchableOpacity>
@@ -66,7 +71,7 @@ export default function SignUp() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#87CEEB", // Sky blue background
+    backgroundColor: "#87CEEB",
     justifyContent: "center",
     padding: 24,
   },
@@ -74,10 +79,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 30,
     borderRadius: 30,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.1,
-    shadowRadius: 20,
     elevation: 5,
   },
   title: {
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 16,
     fontSize: 16,
+    color: "#000", // Makes the typed text black
   },
   button: {
     backgroundColor: "#0077B6",

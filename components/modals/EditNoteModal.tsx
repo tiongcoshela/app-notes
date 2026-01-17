@@ -29,18 +29,22 @@ export default function EditNoteModal({
           <Text style={styles.modalTitle}>Edit Note</Text>
 
           <TextInput
-            style={styles.input}
-            placeholder="Title"
-            value={title}
-            onChangeText={onTitleChange}
-          />
-          <TextInput
-            style={[styles.input, styles.textArea]}
-            placeholder="Description"
-            value={description}
-            onChangeText={onDescriptionChange}
-            multiline
-          />
+          style={styles.input}
+          placeholder="Title"
+          placeholderTextColor="#999"
+          value={title}
+          onChangeText={onTitleChange}
+        />
+
+        <TextInput
+          style={[styles.input, styles.textArea]}
+          placeholder="Description"
+          placeholderTextColor="#999"
+          value={description}
+          onChangeText={onDescriptionChange}
+          multiline
+        />
+
 
           <View style={styles.buttonRow}>
             <TouchableOpacity style={[styles.button, styles.updateButton]} onPress={onUpdate}>
@@ -87,12 +91,14 @@ const styles = StyleSheet.create({
     color: "#0083b0",
   },
   input: {
-    backgroundColor: "#f5f5f5",
-    borderRadius: 15,
-    padding: 12,
-    marginBottom: 12,
-    fontSize: 16,
-  },
+  backgroundColor: "#f5f5f5",
+  borderRadius: 15,
+  padding: 12,
+  marginBottom: 12,
+  fontSize: 16,
+  color: "#000", // ✅ ADD
+},
+
   textArea: {
     height: 80,
     textAlignVertical: "top",

@@ -6,14 +6,16 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "taskexpo",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "newArchEnabled": true,
+
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.shela-marie33333.taskexpo"
+      "bundleIdentifier": "com.shelamarie33333.taskexpo.notes"
     },
+
     "android": {
-      "package": "com.shela-marie33333.taskexpo",
+      "package": "com.shelamarie33333.taskexpo.notes",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
@@ -23,11 +25,13 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
+
     "web": {
       "output": "static",
       "favicon": "./assets/images/favicon.png",
       "bundler": "metro"
     },
+
     "plugins": [
       "expo-router",
       [
@@ -45,10 +49,12 @@
       ],
       "expo-web-browser"
     ],
+
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
     },
+
     "extra": {
       "eas": {
         "projectId": "3f0e3c28-8437-4101-a271-de2c6ab1c61d"

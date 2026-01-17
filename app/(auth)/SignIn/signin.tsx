@@ -37,23 +37,24 @@ export default function SignIn() {
         <Text style={styles.title}>Sign In</Text>
 
         <TextInput
-          style={styles.input}
-          placeholder="Email"
-          placeholderTextColor="#888"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
+  style={styles.input}
+  placeholder="Email"
+  placeholderTextColor="#999"
+  value={email}
+  onChangeText={setEmail}
+  keyboardType="email-address"
+  autoCapitalize="none"
         />
 
         <TextInput
-          style={styles.input}
-          placeholder="Password"
-          placeholderTextColor="#888"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
+  style={styles.input}
+  placeholder="Password"
+  placeholderTextColor="#999"
+  value={password}
+  onChangeText={setPassword}
+  secureTextEntry
+/>
+
 
         <TouchableOpacity style={styles.button} onPress={handleSignIn} disabled={loading}>
           <Text style={styles.buttonText}>{loading ? "Signing In..." : "Sign In"}</Text>
@@ -98,12 +99,14 @@ const styles = StyleSheet.create({
     color: "#0077B6", // Matches Sign Up Teal
   },
   input: {
-    backgroundColor: "#f1f1f1",
-    borderRadius: 25,
-    padding: 16,
-    marginBottom: 16,
-    fontSize: 16,
-  },
+  backgroundColor: "#f1f1f1",
+  borderRadius: 25,
+  padding: 16,
+  marginBottom: 16,
+  fontSize: 16,
+  color: "#000", // ✅ ADD
+},
+
   button: {
     backgroundColor: "#0077B6", // Matches Sign Up Teal
     padding: 16,
