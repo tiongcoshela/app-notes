@@ -1,14 +1,7 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from "@supabase/supabase-js";
 
-// from here this code is okay already, you have to create a "env.local"
+// Make sure you have your .env.local file with these two keys:
 const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY!;
 
-// supabase -> createClient
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-    auth: {
-        autoRefreshToken: true,
-        persistSession: true,
-        detectSessionInUrl: false,
-    }
-});
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
