@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { supabase } from "@/services/supabase";
+import { Ionicons } from '@expo/vector-icons'; // Ensure this is imported
 
 export default function SignUp() {
   const router = useRouter();
@@ -10,6 +11,10 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Separate states for password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleSignUp = async () => {
     if (!email || !password || !confirmPassword) return Alert.alert("Error", "Please fill all fields");
@@ -41,24 +46,43 @@ export default function SignUp() {
           onChangeText={setEmail}
         />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          placeholderTextColor="#999"
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-        />
+        {/* Password Field */}
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={[styles.input, { flex: 1, marginBottom: 0 }]}
+            placeholder="Password"
+            placeholderTextColor="#999"
+            secureTextEntry={!showPassword}
+            value={password}
+            onChangeText={setPassword}
+          />
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.iconContainer}>
+            <Ionicons 
+              name={showPassword ? "eye-off" : "eye"} 
+              size={24} 
+              color="#0077B6" 
+            />
+          </TouchableOpacity>
+        </View>
 
-        {/* I removed the duplicate here */}
-        <TextInput
-          style={styles.input}
-          placeholder="Confirm Password"
-          placeholderTextColor="#999"
-          secureTextEntry
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-        />
+        {/* Confirm Password Field */}
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={[styles.input, { flex: 1, marginBottom: 0 }]}
+            placeholder="Confirm Password"
+            placeholderTextColor="#999"
+            secureTextEntry={!showConfirmPassword}
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+          />
+          <TouchableOpacity onPress={() => setShowConfirmPassword(!showConfirmPassword)} style={styles.iconContainer}>
+            <Ionicons 
+              name={showConfirmPassword ? "eye-off" : "eye"} 
+              size={24} 
+              color="#0077B6" 
+            />
+          </TouchableOpacity>
+        </View>
 
         <TouchableOpacity style={styles.button} onPress={handleSignUp} disabled={loading}>
           <Text style={styles.buttonText}>{loading ? "Creating Account..." : "Sign Up"}</Text>
@@ -88,13 +112,24 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#0077B6",
   },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f1f1f1",
+    borderRadius: 25,
+    marginBottom: 16,
+    paddingRight: 15, // Creates space for the icon inside the bar
+  },
   input: {
     backgroundColor: "#f1f1f1",
     borderRadius: 25,
     padding: 16,
     marginBottom: 16,
     fontSize: 16,
-    color: "#000", // Makes the typed text black
+    color: "#000",
+  },
+  iconContainer: {
+    padding: 5,
   },
   button: {
     backgroundColor: "#0077B6",
